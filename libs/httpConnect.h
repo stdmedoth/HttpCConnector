@@ -20,7 +20,6 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
-#define __HTTP_DEBUG__ 
 
 #define MAX_HOST_LEN 100
 #define MAX_URL_LEN 1000
@@ -52,7 +51,5 @@ extern int SendGetHttpConnector(HttpConnector *connector, char *data);
 
 unsigned long hex2int(char *a, unsigned int len);
 extern HttpBuffer ReceiveHttpConnector(HttpConnector *connector);
-
-
 
 #endif
