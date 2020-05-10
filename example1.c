@@ -23,19 +23,18 @@ int main()
 	}
 
 	HttpConnectorSetUserAgent(connector,"curl/7.54"); //set user-agent on http requisition
-	SendGetHttpConnector(connector,"/"); //HttpConnector *connector, char *data
+	if(SendGetHttpConnector(connector,"/")!=0) //HttpConnector *connector, char *data
+		return 1;
 	printf("sent...\n");
 
-	printf("receiving...\n");
 	output = fopen("myip.txt","w");
 	if(output==NULL)
 	{		
 		printf("Cant open file\n");
 		return 1;
 	}
-	int cont=0;
 	
-	
+	printf("receiving...\n");	
 	if((ReceiveBuffer = ReceiveHttpConnector(connector))==NULL) //HttpConnector *connector, int MAX_RESPONSE_LEN, char *data
 	{
 		printf("Receive error\n");
@@ -45,12 +44,8 @@ int main()
 	fprintf(output,ReceiveBuffer);	
 	
 	fclose(output);
-	cont++;
 		
-	if(cont==0)
-		printf("Nothing received\n");
-	else
-		printf("content added to file successfully\n");
+	printf("content added to file successfully\n");
 	return 0;
 }
 
