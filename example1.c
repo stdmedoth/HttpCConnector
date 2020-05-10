@@ -13,17 +13,16 @@ int main()
 {
 	FILE *output;
 	printf("creating http connector...\n");
-	HttpConnector *connector = CreateHttpConnector("ifconfig.me",80);
+	HttpConnector *connector = CreateHttpConnector("ifconfig.me",80); // char *host, int port
 	HttpBuffer ReceiveBuffer;
-
 	if(connector == NULL)
 	{
 		printf("%s",connector);
 		return 1;
 	}
 
-	HttpConnectorSetUserAgent(connector,"curl/7.54"); //set user-agent on http requisition
-	if(SendGetHttpConnector(connector,"/")!=0) //HttpConnector *connector, char *data
+	HttpConnectorSetUserAgent(connector,"curl/7.54"); //set user-agent on http requisition - HttpConnector *connector,  char *data
+	if(SendGetHttpConnector(connector,"/")!=0) //Send GET method requisition - HttpConnector *connector, char *data
 		return 1;
 	printf("sent...\n");
 
@@ -33,7 +32,7 @@ int main()
 		printf("Cant open file\n");
 		return 1;
 	}
-	
+
 	printf("receiving...\n");	
 	if((ReceiveBuffer = ReceiveHttpConnector(connector))==NULL) //HttpConnector *connector, int MAX_RESPONSE_LEN, char *data
 	{
