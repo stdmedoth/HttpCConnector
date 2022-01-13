@@ -34,7 +34,7 @@ int main()
 	}
 
 	printf("receiving...\n");	
-	if((ReceiveBuffer = ReceiveHttpConnector(connector))==NULL) //HttpConnector *connector, int MAX_RESPONSE_LEN, char *data
+	if((ReceiveBuffer = ReceiveHttpConnector(connector))==NULL) //HttpConnector *connector
 	{
 		printf("Receive error\n");
 		return 1;
