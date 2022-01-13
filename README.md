@@ -1,6 +1,6 @@
 # HttpCConnector
 
-simple library with function, to send http requests in an easy and simple way.
+simple library with function to send http requests in an easy and simple way.
 
 
 HttpConnector *connector
