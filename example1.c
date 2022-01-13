@@ -40,7 +40,7 @@ int main()
 		return 1;
 	}
 	
-	fprintf(output,ReceiveBuffer);	
+	fprintf(output,"%s",ReceiveBuffer);	
 	
 	fclose(output);
 		
