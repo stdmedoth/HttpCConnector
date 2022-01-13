@@ -3,8 +3,6 @@
 */
 #include <httpConnect.h>
 
-#define MAX_OUTP_BUF 200
-
 char *HttpFormatRequisition [] = {"GET ","HTTP/1.1","Host: ","User-Agent:","Accept: */*"};
 
 void HttpConnectorSetUserAgent(HttpConnector *connector, char *user_agent)
@@ -38,14 +36,14 @@ int SendGetHttpConnector(HttpConnector *connector, char *data)
 
 HttpBuffer ReceiveHttpConnector(HttpConnector *connector)
 {
-	HttpBuffer HttpHeaderBuffer = malloc(48000);
+	HttpBuffer HttpHeaderBuffer = malloc(MAX_BUFFER_LEN);
 	HttpBuffer HttpReceiveBuffer = malloc(1);
-	HttpBuffer HttpTotalBuffer = malloc(48000);
+	HttpBuffer HttpTotalBuffer = malloc(MAX_BUFFER_LEN);
 	char *fim;
 	int pos=0,ascii,bytes=0;
 	int response_qnt=0;
 	char *hexa_qnt = malloc(20);
-	if(recv(connector->socket_fd,HttpHeaderBuffer,48000,0)==-1) // gets headers
+	if(recv(connector->socket_fd,HttpHeaderBuffer,MAX_BUFFER_LEN,0)==-1) // gets headers
 		return HttpHeaderBuffer;
 
 	hexa_qnt = strstr(HttpHeaderBuffer,"\r\n\r\n")+4;
@@ -59,7 +57,7 @@ HttpBuffer ReceiveHttpConnector(HttpConnector *connector)
 			hexa_qnt[pos] = '\0';
 			break;
 		}
-		if(pos>=48000)
+		if(pos>=MAX_BUFFER_LEN)
 		{
 			return HttpHeaderBuffer;
 			break;
@@ -84,10 +82,10 @@ HttpBuffer ReceiveHttpConnector(HttpConnector *connector)
 }
 
 HttpConnector *CreateHttpConnector(char *host, int port)
-{
+{	
 	HttpConnector *connector;
 	int socket_fd=0,status=0;
-	char stdout_buf[MAX_OUTP_BUF];
+	char stdout_buf[MAX_BUFFER_LEN];
 	struct hostent *st_hosts;
 	struct timeval time_value;
 	

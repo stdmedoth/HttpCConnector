@@ -2,7 +2,7 @@
  * Easy web connector
  *
  * compile with gcc:
- * gcc src/* example1.c -o example1 -I libs/ -g
+ * gcc src/* example1.c -o example1 -I include/ 
  * 
  * this program example connect a reverse ip site and gets extern ip
  */
@@ -15,11 +15,7 @@ int main()
 	printf("creating http connector...\n");
 	HttpConnector *connector = CreateHttpConnector("ifconfig.me",80); // char *host, int port
 	HttpBuffer ReceiveBuffer;
-	if(connector == NULL)
-	{
-		printf("%s",connector);
-		return 1;
-	}
+	if(connector == NULL) return 1;
 
 	HttpConnectorSetUserAgent(connector,"curl/7.54"); //set user-agent on http requisition - HttpConnector *connector,  char *data
 	if(SendGetHttpConnector(connector,"/")!=0) //Send GET method requisition - HttpConnector *connector, char *data

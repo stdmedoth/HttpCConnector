@@ -23,7 +23,7 @@
 
 #define MAX_HOST_LEN 100
 #define MAX_URL_LEN 1000
-#define MAX_BUFFER_LEN 1000
+#define MAX_BUFFER_LEN 2048
 
 typedef struct 
 {
