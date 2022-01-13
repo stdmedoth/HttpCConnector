@@ -5,6 +5,7 @@ simple library with function, to send http requests in an easy and simple way.
 
 HttpConnector *connector
 Socket struct with destination url informations
+
     typedef struct 
     {
       int socket_fd;
