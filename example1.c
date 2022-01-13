@@ -4,6 +4,9 @@
  * compile with gcc:
  * gcc src/* example1.c -o example1 -I include/ 
  * 
+ * or compile with make
+ * make
+ * 
  * this program example connect a reverse ip site and gets extern ip
  */
  

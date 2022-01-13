@@ -13,4 +13,4 @@ example1.o:
 	gcc example1.c -c $(INCLUDE)
 
 clear:
-	rm *.o -rf
+	rm *.o $(RESULT) -rf
